@@ -526,3 +526,6 @@ class MetaData:
         # What is this?!
         # specs.extend(utils.ensure_list(self.config.extra_deps))
         return specs
+
+    def get_test_bld_deps(self):
+        specs += self.get_value("test/build_requires", [])

@@ -240,6 +240,10 @@ class Test(BaseModel):
         None,
         description="In addition to the runtime requirements, you can specify requirements needed during testing.",
     )
+    build_requires: Optional[List[str]] = Field(
+        None,
+        description="In addition to the runtime requirements, you can specify requirements needed during testing.",
+    )
     imports: Optional[List[str]] = Field(None, description="Test importing modules.")
     commands: Optional[List[str]] = Field(
         None, description="The test commands to execute."

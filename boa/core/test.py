@@ -818,6 +818,16 @@ def run_test(
         if env_path_backup_var_exists:
             env["CONDA_PATH_BACKUP"] = os.environ["CONDA_PATH_BACKUP"]
 
+    # EXTRA STEP!
+    bld_arch_specs = metadata.get_value("test/build_requires", [])
+    bld_arch_solver, bld_arch_pkg_cache_path = get_solver(metadata.config.build_subdir)
+    bld_arch_solver.replace_channels()
+    MambaContext().target_prefix = metadata.config.build_prefix
+    transaction = bld_arch_solver.solve(bld_arch_specs, [bld_arch_pkg_cache_path])
+    transaction.execute(
+        PrefixData(metadata.config.build_prefix),
+    )
+
     if config.test_run_post:
         from conda_build.utils import get_installed_packages
 

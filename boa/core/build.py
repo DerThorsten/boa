@@ -392,10 +392,6 @@ def write_build_scripts(m, script, build_file):
 
     env["CONDA_BUILD_STATE"] = "BUILD"
 
-    emsdk_dir = os.environ.get("CONDA_EMSDK_DIR")
-    if emsdk_dir is not None:
-        env["CONDA_EMSDK_DIR"] = emsdk_dir
-
     # forcing shiny colors everywhere
     env["CLICOLOR_FORCE"] = 1
     env["AM_COLOR_TESTS"] = "always"
